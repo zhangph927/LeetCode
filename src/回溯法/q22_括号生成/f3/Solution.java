@@ -1,7 +1,9 @@
-package 回溯法.q22_括号生成.f1;
+package 回溯法.q22_括号生成.f3;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @ClassName : Solution
@@ -27,45 +29,42 @@ import java.util.List;
  */
 public class Solution {
 
+
     /**
      * @Title generateParenthesis
-     * @Description 回溯/或者深度优先
+     * @Description 动态规划
      * @Author zph
      * @Date 2020/7/5 17:42
      * @Param [n]
      * @return java.util.List<java.lang.String>
      */
     public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
+
         if(n==0){
-            return  res;
+            return  new ArrayList<>();
         }
-        helper("",n,n,res);
-        return  res;
+        List<List<String>> dp = new ArrayList<>();
+        List<String> dp0=new ArrayList<>();
+        dp0.add("");
+        dp.add(dp0);
+        for(int i=1;i<n;i++){
+            List<String> cur=new ArrayList<>();
+            for(int j=0;j<i;j++){
+                List<String> str1 = dp.get(j);
+                List<String> str2 = dp.get(i-j-1);
+                for(String s1:str1){
+                    for(String s2:str2){
+                        cur.add("("+s1+")"+s2);
+                    }
+                }
+
+            }
+            dp.add(cur);
+        }
+        return  dp.get(n);
     }
 
-    /**
-     * @param curStr 当前递归得到的结果
-     * @param left   左括号还有几个可以使用
-     * @param right  右括号还有几个可以使用
-     * @param res    结果集
-     */
 
-    private void helper(String curStr,int left,int right,List<String> res){
-        if(left==0&&right==0){
-            res.add(curStr);
-            return;
-        }
-        if(left>right){
-            return;
-        }
-        if(left>0){
-            helper(curStr+"(",left-1,right,res);
-        }
-        if(right>0){
-            helper(curStr+")",left,right-1,res);
-        }
-    }
 
 
 }
