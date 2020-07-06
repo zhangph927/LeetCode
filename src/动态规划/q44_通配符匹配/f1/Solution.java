@@ -1,4 +1,4 @@
-package 动态规划.q44_通配符匹配;
+package 动态规划.q44_通配符匹配.f1;
 
 /**
  * @ClassName : Solution
@@ -52,6 +52,14 @@ package 动态规划.q44_通配符匹配;
  * @Version : V1.0
  */
 public class Solution {
+    /**
+     * @Title isMatch
+     * @Description 动态规划
+     * @Author zph
+     * @Date 2020/7/6 17:01
+     * @Param [s, p]
+     * @return boolean
+     */
     public boolean isMatch(String s, String p) {
         int sLen = s.length();
         int pLen = p.length();
