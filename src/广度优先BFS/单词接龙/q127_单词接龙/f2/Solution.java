@@ -1,4 +1,4 @@
-package 广度优先BFS.q127_单词接龙.f2;
+package 广度优先BFS.单词接龙.q127_单词接龙.f2;
 
 import java.util.*;
 
