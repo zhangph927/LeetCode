@@ -1,4 +1,4 @@
-package 树相关.二叉树.q98_验证二叉搜索树.f2;
+package 树相关.二叉搜索树.q98_验证二叉搜索树.f2;
 
 import 树相关.二叉树.TreeNode;
 

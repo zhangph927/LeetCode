@@ -1,6 +1,8 @@
-package 数组操作.q1002_查找常用字符.f1;
+package 数组操作.q1002_查找常用字符.f2;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @ClassName : Solution
@@ -33,54 +35,49 @@ import java.util.*;
 public class Solution {
 
     /**
-     * @Title commonChars
-     * @Description 哈希表
-     * @Author zph
-     * @Date 2020/7/14 13:59
-     * @Param [A]
      * @return java.util.List<java.lang.String>
+     * @Title commonChars
+     * @Description 根据数据特性，26位字母，构造哈希数组
+     * @Author zph
+     * @Date 2020/7/14 15:42
+     * @Param [A]
      */
     public List<String> commonChars(String[] A) {
         List<String> res = new ArrayList<>();
-        Map<Character, Integer> map = new HashMap<>();
+        //特判
         if (A == null || A.length == 0) {
             return res;
         }
         int length = A.length;
-        char[] chars = A[0].toCharArray();
-        for (char ch : chars) {
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        int[] hash = new int[26];
+        int[] temp = new int[26];
+        //初始化
+        for (int i = 0; i < 26; i++) {
+            hash[i] = 100;
         }
-
-
-        for (int i = 1; i < length; i++) {
-            char[] charsArr = A[i].toCharArray();
-            Map<Character, Integer> temp = new HashMap<>();
-            for (char ch : charsArr) {
-                temp.put(ch, temp.getOrDefault(ch, 0) + 1);
+        for (int i = 0; i < length; i++) {
+            char[] chars = A[i].toCharArray();
+            int len = chars.length;
+            for (int j = 0; j < len; j++) {
+                temp[chars[j] - 'a']++;
             }
-            intersecton(map, temp);
+            for (int j = 0; j < 26; j++) {
+                int tempNum = temp[j];
+                int hashNum = hash[j];
+                hash[j] = Math.min(tempNum, hashNum);
+                temp[j] = 0;
+            }
         }
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            Character key = entry.getKey();
-            Integer value = entry.getValue();
-            for (int i = value; i > 0; i--) {
-                res.add(String.valueOf(key));
+        for (int i = 0; i < 26; i++) {
+            while (hash[i] > 0) {
+                res.add(String.valueOf((char) (i + 'a')));
+                hash[i]--;
             }
         }
         return res;
-    }
 
-    private void intersecton(Map<Character, Integer> map, Map<Character, Integer> temp) {
-        map.keySet().retainAll(temp.keySet());
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            Character key = entry.getKey();
-            Integer value = entry.getValue();
-            Integer tempValue = temp.get(key);
-            map.put(key, Math.min(value, tempValue));
-        }
-    }
 
+    }
 
     public static void main(String[] args) {
         String[] str = {"bella", "label", "roller"};

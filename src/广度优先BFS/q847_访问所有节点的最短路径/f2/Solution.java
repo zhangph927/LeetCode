@@ -38,20 +38,70 @@ import java.util.Queue;
  */
 public class Solution {
 
-
     /**
+     * @return int
      * @Title shortestPathLength
      * @Description 动态规划
      * @Author zph
      * @Date 2020/7/13 17:45
      * @Param [graph]
-     * @return int
      */
     public int shortestPathLength(int[][] graph) {
+        int length = graph.length;
+        int bitLen = 1 << length;
+        int dist[][] = new int[bitLen][length];
+        int initNum = length * length;
+        int distLe = dist.length;
+        for (int i = 0; i < distLe; i++) {
+            Arrays.fill(dist[i], initNum);
+        }
+        for (int i = 0; i < length; i++) {
+            dist[1 << i][i] = 0;
+        }
+
+
+        for (int cover = 0; cover < bitLen; cover++) {
+            boolean repeat = true;
+            while (repeat) {
+                repeat = false;
+                for (int head = 0; head < length; head++) {
+                    int d = dist[cover][head];
+                    for (int next : graph[head]) {
+                        int cover2 = cover | (1 << next);
+                        if (d + 1 < dist[cover2][next]) {
+                            dist[cover2][next] = d + 1;
+                            if (cover == cover2) {
+                                repeat = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        int ans = initNum;
+        for (int num : dist[bitLen - 1]) {
+            ans = Math.min(ans, num);
+        }
+        return ans;
+
+    }
+
+
+    /**
+     * @return int
+     * @Title shortestPathLength
+     * @Description 动态规划
+     * @Author zph
+     * @Date 2020/7/13 17:45
+     * @Param [graph]
+     */
+    public int shortestPathLength1(int[][] graph) {
         int N = graph.length;
         int dist[][] = new int[1 << N][N];
-        for (int[] row: dist) Arrays.fill(row, N*N);
-        for (int x = 0; x < N; ++x) dist[1<<x][x] = 0;
+        for (int[] row : dist) Arrays.fill(row, N * N);
+        for (int x = 0; x < N; ++x) dist[1 << x][x] = 0;
 
         for (int cover = 0; cover < 1 << N; ++cover) {
             boolean repeat = true;
@@ -59,10 +109,10 @@ public class Solution {
                 repeat = false;
                 for (int head = 0; head < N; ++head) {
                     int d = dist[cover][head];
-                    for (int next: graph[head]) {
+                    for (int next : graph[head]) {
                         int cover2 = cover | (1 << next);
                         if (d + 1 < dist[cover2][next]) {
-                            dist[cover2][next] = d+1;
+                            dist[cover2][next] = d + 1;
                             if (cover == cover2) repeat = true;
                         }
                     }
@@ -70,28 +120,23 @@ public class Solution {
             }
         }
 
-        int ans = N*N;
-        for (int cand: dist[(1<<N) - 1])
+        int ans = N * N;
+        for (int cand : dist[(1 << N) - 1])
             ans = Math.min(cand, ans);
         return ans;
 
     }
 
 
-
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[][] graph = {{1, 2, 3}, {0}, {0}, {0}};
+        int[][] graph = {{1}, {0, 2, 4}, {1, 3, 4}, {2}, {1, 2}};
+        //int[][] graph = {{1, 2, 3}, {0}, {0}, {0}};
         int i = solution.shortestPathLength(graph);
         System.out.println(i);
 
 
-
-
-
     }
-
-
 
 
 }

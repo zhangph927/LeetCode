@@ -62,7 +62,7 @@ public class Solution {
                 i++;
             }
         }
-        //防止0
+        //防止出现0
         return Arrays.copyOf(res, i);
     }
 }
