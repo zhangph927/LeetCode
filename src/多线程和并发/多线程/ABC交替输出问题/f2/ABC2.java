@@ -1,4 +1,4 @@
-package 多线程.ABC交替输出问题.f2;
+package 多线程和并发.多线程.ABC交替输出问题.f2;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

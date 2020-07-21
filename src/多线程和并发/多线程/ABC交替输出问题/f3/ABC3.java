@@ -1,4 +1,4 @@
-package 多线程.ABC交替输出问题.f3;
+package 多线程和并发.多线程.ABC交替输出问题.f3;
 
 import java.util.concurrent.Semaphore;
 
