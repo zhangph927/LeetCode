@@ -1,4 +1,4 @@
-package 数组操作.q350两个数组的交集II.f2;
+package 数组操作.两个数组的交集.q350两个数组的交集II.f1;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,48 +38,38 @@ public class Solution {
     /**
      * @return int[]
      * @Title intersect
-     * @Description 排序
+     * @Description 哈希表
      * @Author zph
      * @Date 2020/7/14 0:12
      * @Param [nums1, nums2]
      */
     public int[] intersect(int[] nums1, int[] nums2) {
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        int length1=nums1.length;
-        int length2=nums2.length;
-        int[] res=new int[Math.min(length1,length2)];
-        int index=0;
-        int index1=0;
-        int index2=0;
-        while (index1<length1&&index2<length2){
-            if(nums1[index1]<nums2[index2]){
-                index1++;
-            }else if(nums1[index1]>nums2[index2]){
-                index2++;
+        if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
+        }
+        Map<Integer, Integer> map = new HashMap<>();
 
-            }else {
-                res[index]=nums1[index1];
-                index++;
-                index1++;
-                index2++;
+        for (int num : nums1) {
+            Integer count = map.getOrDefault(num, 0) + 1;
+            map.put(num, count);
+        }
+        int index = 0;
+
+        int[] res = new int[nums1.length];
+        for (int num : nums2) {
+            Integer count = map.getOrDefault(num, 0);
+            if (count > 0) {
+                res[index++] = num;
+                count--;
+                if (count > 0) {
+                    map.put(num, count);
+                } else {
+                    map.remove(num);
+                }
             }
         }
 
-
-
-        return Arrays.copyOfRange(res,0,index);
-
-    }
-
-    public static void main(String[] args) {
-        int[] nums1 ={4,9,5};
-        int[] nums2 = {9,4,9,8,4};
-        Solution solution = new Solution();
-        int[] intersect = solution.intersect(nums1, nums2);
-        System.out.println(intersect);
-
-
+        return Arrays.copyOfRange(res, 0, index);
     }
 
 

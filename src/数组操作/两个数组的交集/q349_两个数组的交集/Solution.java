@@ -1,4 +1,4 @@
-package 数组操作.q349_两个数组的交集;
+package 数组操作.两个数组的交集.q349_两个数组的交集;
 
 import java.util.Arrays;
 import java.util.HashSet;

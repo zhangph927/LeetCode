@@ -24,10 +24,18 @@ package 二分法.q69_x的平方根;
  * @Version : V1.0
  */
 public class Solution {
+    /**
+     * @Title mySqrt
+     * @Description 二分法
+     * @Author zph
+     * @Date 2020/7/22 23:33
+     * @Param [x]
+     * @return int
+     */
     public int mySqrt(int x) {
         long left=0;
         long right=Integer.MAX_VALUE;
-        while(left<right){
+        while (left<right){
             long mid=left+(right-left+1)/2;
             if(mid*mid>x){
                 right=mid-1;
@@ -35,7 +43,6 @@ public class Solution {
                 left=mid;
             }
         }
-        return  (int) left;
-
+        return (int)left;
     }
 }
