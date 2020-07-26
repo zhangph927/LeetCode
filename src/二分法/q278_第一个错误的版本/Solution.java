@@ -1,5 +1,7 @@
 package 二分法.q278_第一个错误的版本;
 
+import java.util.Arrays;
+
 /**
  * @ClassName : Solution
  * @Description :278. 第一个错误的版本
