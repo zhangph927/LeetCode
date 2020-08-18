@@ -1,9 +1,8 @@
-package 字典树.q面试题17_13恢复空格.f3;
+package 字典树或者前缀树.q面试题17_13恢复空格.f3;
 
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**

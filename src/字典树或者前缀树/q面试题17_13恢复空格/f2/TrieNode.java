@@ -1,4 +1,4 @@
-package 字典树.q面试题17_13恢复空格.f2;
+package 字典树或者前缀树.q面试题17_13恢复空格.f2;
 
 /**
  * @ClassName : TrieNode

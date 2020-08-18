@@ -1,7 +1,4 @@
-package 字符串.q696_计数二进制子串.f1;
-
-import java.util.ArrayList;
-import java.util.List;
+package 字符串操作.q696_计数二进制子串.f2;
 
 /**
  * @ClassName : Solution
@@ -35,16 +32,17 @@ import java.util.List;
 public class Solution {
     /**
      * @Title countBinarySubstrings
-     * @Description 按字符分组
+     * @Description 按字符分组 空间复杂度为1
      * @Author zph
      * @Date 2020/8/10 16:53
      * @Param [s]
      * @return int
      */
     public int countBinarySubstrings(String s) {
-        List<Integer> countList = new ArrayList<>();
         int ptr=0;
         int length=s.length();
+        int last=0;
+        int res=0;
         while (ptr<length){
             int c=s.charAt(ptr);
             int count=0;
@@ -52,16 +50,9 @@ public class Solution {
                 ptr++;
                 count++;
             }
-            countList.add(count);
-        }
-        int res=0;
-        int size=countList.size();
-        for(int i=1;i<size;i++){
-            res+=Math.min(countList.get(i),countList.get(i-1));
+            res+=Math.min(count,last);
+            last=count;
         }
         return res;
-
-
-
     }
 }

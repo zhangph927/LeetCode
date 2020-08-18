@@ -1,4 +1,4 @@
-package 动态规划.q5_最长回文子串.f2;
+package 动态规划.q5_最长回文子串.f3;
 
 /**
  * @ClassName : Solution
@@ -22,7 +22,7 @@ public class Solution {
     /**
      * @return java.lang.String
      * @Title longestPalindrome
-     * @Description 动态规划
+     * @Description 中心扩散法
      * @Author zph
      * @Date 2020/8/17 23:57
      * @Param [s]
@@ -33,31 +33,33 @@ public class Solution {
         }
         char[] chars = s.toCharArray();
         int length=chars.length;
-        boolean[][] dp=new boolean[length][length];
-        //初始化
-        for(int i=0;i<length;i++){
-            dp[i][i]=true;
-        }
-        int start=0;
         int maxLen=1;
-        for(int j=1;j<length;j++){
-            for(int i=0;i<j;i++){
-                if(chars[i]!=chars[j]){
-                    dp[i][j]=false;
-                }else {
-                    if(j-i<3){
-                        dp[i][j]=true;
-                    }else {
-                        dp[i][j]=dp[i+1][j-1];
-                    }
-                }
-                if(dp[i][j]&&j-i+1>maxLen){
-                    maxLen=j-i+1;
-                    start=i;
-                }
+        String res=s.substring(0,1);
+        for(int i=0;i<length-1;i++){
+            String oddStr=centerSpread(s,i,i);
+            String evenStr=centerSpread(s,i,i+1);
+            String maxLenStr=oddStr.length()>evenStr.length()?oddStr:evenStr;
+            if(maxLenStr.length()>maxLen){
+                maxLen=maxLenStr.length();
+                res=maxLenStr;
             }
         }
-        return s.substring(start,start+maxLen);
+        return res;
+    }
+
+    private String centerSpread(String s,int left,int right){
+        int length=s.length();
+        int i=left;
+        int j=right;
+        while (i>=0&&j<length){
+            if(s.charAt(i)==s.charAt(j)){
+                i--;
+                j++;
+            }else {
+                break;
+            }
+        }
+        return s.substring(i+1,j);
 
     }
 
