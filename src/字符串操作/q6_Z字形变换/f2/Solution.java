@@ -1,4 +1,7 @@
-package 字符串操作.q6_Z字形变换;
+package 字符串操作.q6_Z字形变换.f2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName : Solution
@@ -34,7 +37,30 @@ package 字符串操作.q6_Z字形变换;
  * @Version : V1.0
  */
 public class Solution {
+    /**
+     * @Title convert
+     * @Description 按行访问
+     * @Author zph
+     * @Date 2020/8/19 0:35
+     * @Param [s, numRows]
+     * @return java.lang.String
+     */
     public String convert(String s, int numRows) {
 
+        if (numRows == 1) return s;
+
+        StringBuilder ret = new StringBuilder();
+        int n = s.length();
+        int cycleLen = 2 * numRows - 2;
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j + i < n; j += cycleLen) {
+                ret.append(s.charAt(j + i));
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n)
+                    ret.append(s.charAt(j + cycleLen - i));
+            }
+        }
+        return ret.toString();
     }
+
 }

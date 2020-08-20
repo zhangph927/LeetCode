@@ -1,4 +1,4 @@
-package 动态规划.q5_最长回文子串.f3;
+package 动态规划.回文类.q5_最长回文子串.f3;
 
 /**
  * @ClassName : Solution
