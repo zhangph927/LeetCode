@@ -1,23 +1,20 @@
-package 回溯法.q46_全排列.f2;
+package 回溯法.q47_全排列II.f1;
 
 import java.util.*;
 
 /**
  * @ClassName : Solution
- * @Description :46. 全排列
- * 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
- *
+ * @Description :47. 全排列 II
+ * 给定一个可包含重复数字的序列，返回所有不重复的全排列。
+ * <p>
  * 示例:
- *
- * 输入: [1,2,3]
+ * <p>
+ * 输入: [1,1,2]
  * 输出:
  * [
- *   [1,2,3],
- *   [1,3,2],
- *   [2,1,3],
- *   [2,3,1],
- *   [3,1,2],
- *   [3,2,1]
+ * [1,1,2],
+ * [1,2,1],
+ * [2,1,1]
  * ]
  * @Author : zph
  * @Date: 2020-08-29 22:22
@@ -25,7 +22,15 @@ import java.util.*;
  */
 public class Solution {
 
-    public List<List<Integer>> permute(int[] nums) {
+    /**
+     * @Title permute
+     * @Description 回溯
+     * @Author zph
+     * @Date 2020/8/29 22:45
+     * @Param [nums]
+     * @return java.util.List<java.util.List<java.lang.Integer>>
+     */
+    public List<List<Integer>> permuteUnique(int[] nums) {
         int len = nums.length;
         // 使用一个动态数组保存所有可能的全排列
         List<List<Integer>> res = new ArrayList<>();
@@ -36,6 +41,8 @@ public class Solution {
         boolean[] used = new boolean[len];
         Deque<Integer> path = new ArrayDeque<>(len);
 
+        // 排序（升序或者降序都可以），排序是剪枝的前提
+        Arrays.sort(nums);
         dfs(nums, len, 0, path, used, res);
         return res;
     }
@@ -49,24 +56,26 @@ public class Solution {
         }
 
         for (int i = 0; i < len; i++) {
-            if (!used[i]) {
-                path.addLast(nums[i]);
-                used[i] = true;
-
-                System.out.println("  递归之前 => " + path);
-                dfs(nums, len, depth + 1, path, used, res);
-
-                used[i] = false;
-                path.removeLast();
-                System.out.println("递归之后 => " + path);
+            if (used[i]) {
+                continue;
             }
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
+                continue;
+            }
+            path.addLast(nums[i]);
+            used[i] = true;
+
+            dfs(nums, len, depth + 1, path, used, res);
+
+            used[i] = false;
+            path.removeLast();
         }
     }
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         Solution solution = new Solution();
-        List<List<Integer>> lists = solution.permute(nums);
+        List<List<Integer>> lists = solution.permuteUnique(nums);
         System.out.println(lists);
     }
 

@@ -1,4 +1,4 @@
-package 数字操作.q172_阶乘后的零.f2;
+package 数字操作.q172_阶乘后的零.f3;
 
 import java.math.BigInteger;
 
@@ -26,7 +26,7 @@ public class Solution {
 
     /**
      * @Title trailingZeroes
-     * @Description 计算因子 5
+     * @Description 高效的计算因子 5
      * @Author zph
      * @Date 2020/8/29 16:50
      * @Param [n]
@@ -35,12 +35,9 @@ public class Solution {
     public int trailingZeroes(int n) {
 
         int zeroCount=0;
-        for(int i=5;i<=n;i+=5){
-            int curNum=i;
-            while (curNum%5==0){
-                curNum=curNum/5;
-                zeroCount++;
-            }
+        while (n>0){
+            n=n/5;
+            zeroCount=zeroCount+n;
         }
         return zeroCount;
     }
