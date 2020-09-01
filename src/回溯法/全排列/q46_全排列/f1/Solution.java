@@ -1,4 +1,4 @@
-package 回溯法.q46_全排列.f1;
+package 回溯法.全排列.q46_全排列.f1;
 
 import java.util.ArrayList;
 import java.util.Collections;

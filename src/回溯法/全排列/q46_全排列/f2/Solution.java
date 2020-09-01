@@ -1,4 +1,4 @@
-package 回溯法.q46_全排列.f2;
+package 回溯法.全排列.q46_全排列.f2;
 
 import java.util.*;
 

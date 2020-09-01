@@ -1,4 +1,4 @@
-package 回溯法.q996_正方形数组的数目.f1;
+package 回溯法.q996_正方形数组的数目.f2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
