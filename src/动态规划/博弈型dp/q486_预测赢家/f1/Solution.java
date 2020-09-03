@@ -68,6 +68,7 @@ public class Solution {
         int chooseLeft=nums[i]-dfs(nums,i+1,j,memo);
         int chooseRight=nums[j]-dfs(nums,i,j-1,memo);
         memo[i][j]=Math.max(chooseLeft,chooseRight);
+
         return memo[i][j];
 
     }
