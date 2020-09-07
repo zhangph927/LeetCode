@@ -1,4 +1,4 @@
-package 缓存;
+package 设计.缓存;
 
 import java.util.LinkedList;
 import java.util.Map;
