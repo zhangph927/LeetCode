@@ -2,6 +2,7 @@ package 栈相关.单调栈.q84_柱状图中最大的矩形.f2;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @ClassName : Solution
@@ -80,6 +81,14 @@ public class Solution {
 
         return res;
 
+    }
+
+    public static void main(String[] args) {
+
+        Solution solution = new Solution();
+        int [] nums={2,1,5,6,2,3};
+        int i = solution.largestRectangleArea(nums);
+        System.out.println(i);
     }
 
 
