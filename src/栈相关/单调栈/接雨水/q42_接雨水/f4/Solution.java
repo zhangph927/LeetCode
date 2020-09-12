@@ -61,6 +61,14 @@ public class Solution {
         return res;
     }
 
+    public static void main(String[] args) {
+        int[] height = new int[]{3, 0, 0, 1, 0, 2, 0, 4};
+        Solution solution = new Solution();
+        int res = solution.trap(height);
+        System.out.println(res);
+    }
+
+
 
     private int max(int[] height, int left, int right) {
         int res = height[left];
