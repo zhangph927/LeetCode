@@ -1,6 +1,7 @@
 package 栈.全局单调栈.q1124_表现良好的最长时间段;
 
 import java.util.Stack;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
  * @ClassName : Solution

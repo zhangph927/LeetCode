@@ -2,6 +2,9 @@ package 链表.q19_删除链表的倒数第N个节点.f1;
 
 import 链表.ListNode;
 
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @ClassName : Solution
  * @Description :19. 删除链表的倒数第N个节点
@@ -34,6 +37,8 @@ public class Solution {
      * @return 链表操作.ListNode
      */
     public ListNode removeNthFromEnd(ListNode head, int n) {
+
+
         ListNode dummy= new ListNode(-1);
         dummy.next=head;
         ListNode newHead=head;
