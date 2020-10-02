@@ -41,6 +41,14 @@ import java.util.*;
  * @return
  */
 public class Solution {
+    /**
+     * @Title isValid
+     * @Description 栈
+     * @Author zph
+     * @Date 2020/10/2 23:03
+     * @Param [s]
+     * @return boolean
+     */
     public boolean isValid(String s) {
         Map<Character, Character> map = new HashMap<>();
         map.put(')','(');

@@ -34,7 +34,6 @@ public class Solution {
      * @Date 2020/9/22 0:12
      * @Param [root]
      */
-
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         Deque<TreeNode> stack = new ArrayDeque<>();
@@ -54,8 +53,6 @@ public class Solution {
                     list.add(preVisit.val);
                     cur=null;
                 }
-
-
             }
         }
         return list;

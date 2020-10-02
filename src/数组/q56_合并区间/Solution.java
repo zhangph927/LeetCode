@@ -1,6 +1,7 @@
 package 数组.q56_合并区间;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * @ClassName : Solution
@@ -32,6 +33,7 @@ import java.util.Arrays;
  */
 public class Solution {
         public int[][] merge(int[][] intervals) {
+
             // 先按照区间起始位置排序
             Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
             // 遍历区间

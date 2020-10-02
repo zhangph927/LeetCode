@@ -58,8 +58,6 @@ public class Solution {
         String p="c*a*b";
         boolean match = solution.isMatch(s, p);
         System.out.println(match);
-
-
     }
 
     public boolean isMatch(String s, String p) {
