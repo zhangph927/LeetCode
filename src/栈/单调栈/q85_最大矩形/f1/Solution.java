@@ -50,7 +50,8 @@ public class Solution {
                     }
                 }
             }
-        } return maxarea;
+        }
+        return maxarea;
     }
 
 }

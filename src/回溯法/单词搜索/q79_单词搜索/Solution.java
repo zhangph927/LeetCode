@@ -1,4 +1,4 @@
-package 回溯法.q79_单词搜索;
+package 回溯法.单词搜索.q79_单词搜索;
 
 /**
  * @ClassName : Solution

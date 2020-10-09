@@ -1,4 +1,4 @@
-package 字符串.q49_字母异位词分组.f1;
+package 哈希表.q49_字母异位词分组.f2;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ import java.util.*;
 public class Solution {
     /**
      * @Title groupAnagrams
-     * @Description 排序数组分类
+     * @Description 按计数分类
      * @Author zph
      * @Date 2020/8/16 21:17
      * @Param [strs]
@@ -38,14 +38,26 @@ public class Solution {
             return new ArrayList<>();
         }
         Map<String, List<String>> map = new HashMap<>();
+      int[] count=  new int[26];
         for(String str:strs){
+            Arrays.fill(count,0);
             char[] chars = str.toCharArray();
-            Arrays.sort(chars);
-            String s = Arrays.toString(chars);
-            if(!map.containsKey(s)){
-                map.put(s,new ArrayList<>());
+            for(char ch:chars){
+                count[ch-'a']++;
+
             }
-            map.get(s).add(str);
+            StringBuffer buffer = new StringBuffer("");
+
+            for(int i=0;i<26;i++){
+                buffer.append("#");
+                buffer.append(count[i]);
+            }
+            String key = buffer.toString();
+
+            if(!map.containsKey(key)){
+                map.put(key,new ArrayList<>());
+            }
+            map.get(key).add(str);
         }
         return new ArrayList<>(map.values());
 

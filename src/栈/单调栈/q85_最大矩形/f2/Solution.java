@@ -66,7 +66,7 @@ public class Solution {
         return res;
     }
 
-    public int maximalRectangle(char[][] matrix) {
+    public int maximalRectangle(String[][] matrix) {
 
         if (matrix.length == 0) return 0;
         int maxarea = 0;
@@ -78,12 +78,29 @@ public class Solution {
                 // update the state of this row's histogram using the last row's histogram
                 // by keeping track of the number of consecutive ones
 
-                dp[j] = matrix[i][j] == '1' ? dp[j] + 1 : 0;
+                dp[j] = matrix[i][j] == "1" ? dp[j] + 1 : 0;
             }
             // update maxarea with the maximum area from this row's histogram
             maxarea = Math.max(maxarea, helper(dp));
         }
         return maxarea;
+    }
+
+
+    public static void main(String[] args) {
+
+        Solution solution = new Solution();
+
+      String[][] nums= {
+              {"1", "0", "1", "0", "0"},
+              {"1", "0", "1", "1", "1"},
+              {"1", "1", "1", "1", "1"},
+              {"1", "0", "0", "1", "0"}
+      };
+        int i = solution.maximalRectangle(nums);
+        System.out.println(i);
+
+
     }
 
 
