@@ -1,4 +1,4 @@
-package 字典树或者前缀树.q208_实现Trie前缀树;
+package 设计.q208_实现Trie前缀树;
 
 /**
  * @ClassName : Trie

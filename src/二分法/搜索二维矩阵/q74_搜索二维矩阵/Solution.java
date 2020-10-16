@@ -1,4 +1,4 @@
-package 二分法.q74_搜索二维矩阵;
+package 二分法.搜索二维矩阵.q74_搜索二维矩阵;
 
 /**
  * @ClassName : Solution
