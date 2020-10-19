@@ -1,4 +1,4 @@
-package 并查集.q685_冗余连接II;
+package 并查集.冗余连接.q685_冗余连接II;
 
 /**
  * @ClassName : Solution
