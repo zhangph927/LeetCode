@@ -1,4 +1,4 @@
-package 滑动窗口.q76_最小覆盖子串;
+package 滑动窗口.q76_最小覆盖子串.f1;
 
 import java.util.HashMap;
 import java.util.Iterator;

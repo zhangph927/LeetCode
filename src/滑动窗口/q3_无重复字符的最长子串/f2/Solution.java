@@ -1,4 +1,4 @@
-package 滑动窗口.q3_无重复字符的最长子串;
+package 滑动窗口.q3_无重复字符的最长子串.f2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,5 +50,12 @@ public class Solution {
         return  maxLen;
 
 
+    }
+
+    public static void main(String[] args) {
+
+        Solution solution = new Solution();
+        int length = solution.lengthOfLongestSubstring("abcabcbb");
+        System.out.println(length);
     }
 }

@@ -56,13 +56,12 @@ public class Solution {
             return false;
         }
         boolean[] dp = new boolean[target + 1];
+        // base case
         dp[0] = true;
-        for (int i = 0; i < n; i++) {
-            int num = nums[i];
-            for (int j = target; j >= num; --j) {
-                dp[j] |= dp[j - num];
-            }
-        }
+        for (int i = 0; i < n; i++)
+            for (int j = target; j >= 0; j--)
+                if (j - nums[i] >= 0)
+                    dp[j] = dp[j] || dp[j - nums[i]];
         return dp[target];
     }
 }

@@ -56,27 +56,24 @@ public class Solution {
         if (maxNum > target) {
             return false;
         }
-        boolean[][] dp = new boolean[length][target + 1];
-        for (int i = 0; i < length; i++) {
+        boolean[][] dp = new boolean[length+1][target + 1];
+        // base case
+        for (int i = 0; i <= length; i++)
             dp[i][0] = true;
-        }
-        dp[0][nums[0]] = true;
-        for (int i = 1; i < length; i++) {
-            int num = nums[i];
+
+        for (int i = 1; i <= length; i++) {
             for (int j = 1; j <= target; j++) {
-                if (j >= num) {
-                    dp[i][j] = dp[i - 1][j] | dp[i - 1][j - num];
-
-                } else {
+                if (j - nums[i - 1] < 0) {
+                    // 背包容量不足，不能装入第 i 个物品
                     dp[i][j] = dp[i - 1][j];
+                } else {
+                    // 装入或不装入背包
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j-nums[i-1]];
                 }
-
             }
-
         }
 
-
-        return dp[length - 1][target];
+        return dp[length][target];
 
     }
 }

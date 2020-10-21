@@ -72,10 +72,10 @@ public class Solution {
                     }
                     if (indices.containsKey(left)) {
                         for (int x: indices.get(left)) {
-                            freq[x]--;
-                            if (freq[x] == 0) {
+                            if (freq[x] == 1) {
                                 inside--;
                             }
+                            freq[x]--;
                         }
                     }
                     left++;

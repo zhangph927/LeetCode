@@ -1,7 +1,9 @@
-package 滑动窗口.q438_找到字符串中所有字母异位词;
+package 滑动窗口.q438_找到字符串中所有字母异位词.f1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName : Solution
@@ -43,6 +45,8 @@ import java.util.List;
  */
 public class Solution {
 
+    Map<Character, Integer> need = new HashMap<>();
+    Map<Character, Integer> window = new HashMap<>();
     /**
      * @Title findAnagrams
      * @Description 滑动窗口
@@ -52,36 +56,45 @@ public class Solution {
      * @return java.util.List<java.lang.Integer>
      */
     public List<Integer> findAnagrams(String s, String p) {
-        if(s == null || s.length() == 0) return new ArrayList<>();
         List<Integer> res = new ArrayList<>();
-        int[] needs = new int[26]; //由于都是小写字母，因此直接用26个长度的数组代替原来的HashMap
-        int[] window = new int[26];
-        int left = 0, right = 0, total = p.length(); //用total检测窗口中是否已经涵盖了p中的字符
-        for(char ch : p.toCharArray()){
-            needs[ch - 'a'] ++;
+        char[] tChars = p.toCharArray();
+        for (char c : tChars){
+            need.put(c, need.getOrDefault(c, 0) + 1);
         }
-        while(right < s.length()){
-            char chr = s.charAt(right);
-            if(needs[chr - 'a'] > 0){
-                window[chr - 'a'] ++;
-                if(window[chr - 'a'] <= needs[chr - 'a']){
-                    total --;
+
+        int left = 0, right = 0;
+        int valid = 0;
+        char[] sChars = s.toCharArray();
+        while (right < s.length()) {
+            // c 是将移入窗口的字符
+            char c = sChars[right];
+            // 右移窗口
+            right++;
+            // 进行窗口内数据的一系列更新
+            if (need.containsKey(c)) {
+                window.put(c, window.getOrDefault(c, 0) + 1);
+                if (window.get(c).equals(need.get(c))){
+                    valid++;
                 }
             }
-            while(total == 0){
-                if(right-left+1 == p.length()){
+
+            // 判断左侧窗口是否要收缩
+            while (right-left>=p.length()) {
+                if(valid == need.size()){
                     res.add(left);
                 }
-                char chl = s.charAt(left);
-                if(needs[chl - 'a'] > 0){
-                    window[chl - 'a'] --;
-                    if(window[chl - 'a'] < needs[chl - 'a']){
-                        total ++;
+                // d 是将移出窗口的字符
+                char d = sChars[left];
+                // 左移窗口
+                left++;
+                // 进行窗口内数据的一系列更新
+                if (need.containsKey(d)) {
+                    if (window.get(d).equals(need.get(d))){
+                        valid--;
                     }
+                    window.put(d, window.getOrDefault(d, 0) - 1);
                 }
-                left ++;
             }
-            right ++;
         }
         return res;
     }
