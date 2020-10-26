@@ -45,7 +45,6 @@ public class Solution {
             b<<=1;
         }
         return ans;
-
     }
 
 }

@@ -60,8 +60,6 @@ public class Solution {
             ans = Math.min(ans, dp[r - 1][i]);
         }
         return ans;
-
-
     }
 
     public static void main(String[] args) {
@@ -88,10 +86,5 @@ public class Solution {
 
         int i = solution.minimumTotal(triangle);
         System.out.println(i);
-
-
-
-
-
     }
 }

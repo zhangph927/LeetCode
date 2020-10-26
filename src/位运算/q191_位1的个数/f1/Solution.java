@@ -54,7 +54,6 @@ public class Solution {
                 bits++;
             }
            mark<<=1;
-
         }
         return bits;
 

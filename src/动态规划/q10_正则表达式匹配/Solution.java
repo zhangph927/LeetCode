@@ -54,8 +54,8 @@ package 动态规划.q10_正则表达式匹配;
 public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String s="aaaaaaaaaab";
-        String p="c*a*b";
+        String s = "aaaaaaaaaab";
+        String p = "c*a*b";
         boolean match = solution.isMatch(s, p);
         System.out.println(match);
     }
@@ -63,47 +63,44 @@ public class Solution {
     public boolean isMatch(String s, String p) {
         int sLen = s.length();
         int pLen = p.length();
-      boolean[][] dp=  new boolean[sLen+1][pLen+1];
-      dp[0][0]=true;
+        boolean[][] dp = new boolean[sLen + 1][pLen + 1];
+        dp[0][0] = true;
         char[] sChars = s.toCharArray();
         char[] pChars = p.toCharArray();
 
-        for(int i=0;i<=sLen;i++){
-          for(int j=1;j<=pLen;j++){
-              if(pChars[j-1]=='*'){
-                  if(match(sChars,pChars,i,j-1)){
-                      dp[i][j]=dp[i-1][j]||dp[i][j-2];
-                  }else {
-                      dp[i][j]=dp[i][j-2];
-                  }
-              }else {
-                  if(match(sChars,pChars,i,j)){
-                      dp[i][j]=dp[i-1][j-1];
-                  }else {
-                      //可以省略，保留是为了方便理解
-                      dp[i][j]=false;
-                  }
+        for (int i = 0; i <= sLen; i++) {
+            for (int j = 1; j <= pLen; j++) {
+                if (pChars[j - 1] == '*') {
+                    if (match(sChars, pChars, i, j - 1)) {
+                        dp[i][j] = dp[i - 1][j] || dp[i][j - 2];
+                    } else {
+                        dp[i][j] = dp[i][j - 2];
+                    }
+                } else {
+                    if (match(sChars, pChars, i, j)) {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    } else {
+                        //可以省略，保留是为了方便理解
+                        dp[i][j] = false;
+                    }
 
-              }
+                }
 
-          }
+            }
 
-      }
-        return  dp[sLen][pLen];
-
-
-
+        }
+        return dp[sLen][pLen];
     }
 
 
-    private  boolean match(char[] sChars,char[] pChars,int i,int j){
-        if(i==0){
-            return  false;
+    private boolean match(char[] sChars, char[] pChars, int i, int j) {
+        if (i == 0) {
+            return false;
         }
-        if(pChars[j-1]=='.'){
-            return  true;
+        if (pChars[j - 1] == '.') {
+            return true;
         }
-        return sChars[i-1]==pChars[j-1];
+        return sChars[i - 1] == pChars[j - 1];
     }
 
 

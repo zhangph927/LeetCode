@@ -27,12 +27,13 @@ public class Solution {
      * @return int
      */
     public int maxSubArray(int[] nums) {
-        int pre = 0, maxAns = nums[0];
-        for (int x : nums) {
-            pre = Math.max(pre + x, x);
-            maxAns = Math.max(maxAns, pre);
+        int pre=0;
+        int maxValue=nums[0];
+        for(int num:nums){
+            pre=Math.max(num,pre+num);
+            maxValue=Math.max(maxValue,pre);
         }
-        return maxAns;
+        return maxValue;
     }
 
 }

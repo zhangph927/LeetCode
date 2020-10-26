@@ -96,12 +96,8 @@ public class Solution {
                 j++;
                 count += (mid - i + 1);
             }
-
-
         }
         return count;
-
-
     }
 
     public static void main(String[] args) {
