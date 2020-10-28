@@ -1,4 +1,4 @@
-package 堆或者队列.q295_数据流的中位数;
+package 堆或者队列.q295_数据流的中位数.f1;
 
 import java.util.PriorityQueue;
 import java.util.concurrent.Semaphore;
