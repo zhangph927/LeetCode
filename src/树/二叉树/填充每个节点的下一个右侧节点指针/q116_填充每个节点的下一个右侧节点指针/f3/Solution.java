@@ -1,6 +1,9 @@
-package 树.二叉树.填充每个节点的下一个右侧节点指针.q116_填充每个节点的下一个右侧节点指针.f2;
+package 树.二叉树.填充每个节点的下一个右侧节点指针.q116_填充每个节点的下一个右侧节点指针.f3;
 
 import 树.二叉树.填充每个节点的下一个右侧节点指针.Node;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @ClassName : Solution
@@ -43,44 +46,33 @@ public class Solution {
 
     /**
      * @Title connect
-     * @Description 使用已建立的 \text{next}next 指针
+     * @Description 递归
      * @Author zph
      * @Date 2020/10/1 19:01
      * @Param [root]
      * @return 树.二叉树.填充每个节点的下一个右侧节点指针.Node
      */
     public Node connect(Node root) {
-        if (root == null) {
-            return root;
+        if (root == null){
+            return null;
         }
-
-        // 从根节点开始
-        Node leftmost = root;
-
-        while (leftmost.left != null) {
-
-            // 遍历这一层节点组织成的链表，为下一层的节点更新 next 指针
-            Node head = leftmost;
-
-            while (head != null) {
-
-                // CONNECTION 1
-                head.left.next = head.right;
-
-                // CONNECTION 2
-                if (head.next != null) {
-                    head.right.next = head.next.left;
-                }
-
-                // 指针向后移动
-                head = head.next;
-            }
-
-            // 去下一层的最左的节点
-            leftmost = leftmost.left;
-        }
-
+        connectTwoNode(root.left, root.right);
         return root;
     }
 
+    // 定义：输入两个节点，将它俩连接起来
+   private void connectTwoNode(Node node1, Node node2) {
+        if (node1 == null || node2 == null) {
+            return;
+        }
+        /**** 前序遍历位置 ****/
+        // 将传入的两个节点连接
+        node1.next = node2;
+
+        // 连接相同父节点的两个子节点
+        connectTwoNode(node1.left, node1.right);
+        connectTwoNode(node2.left, node2.right);
+        // 连接跨越父节点的两个子节点
+        connectTwoNode(node1.right, node2.left);
+    }
 }

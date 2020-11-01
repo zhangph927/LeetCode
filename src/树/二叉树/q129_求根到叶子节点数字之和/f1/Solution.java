@@ -1,4 +1,4 @@
-package 树.二叉树.q129_求根到叶子节点数字之和;
+package 树.二叉树.q129_求根到叶子节点数字之和.f1;
 
 import 树.二叉树.TreeNode;
 
@@ -45,8 +45,32 @@ import 树.二叉树.TreeNode;
 public class Solution {
 
 
+    /**
+     * @Title sumNumbers
+     * @Description 深度遍历
+     * @Author zph
+     * @Date 2020/10/31 14:23
+     * @Param [root]
+     * @return int
+     */
     public int sumNumbers(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+       return dfs(root,0);
+    }
 
-        return 0;
+    private int dfs(TreeNode node,int preNum){
+        if(node==null){
+            return 0;
+        }
+        int sum=preNum*10+node.val;
+        if(node.left==null&&node.right==null){
+            return sum;
+        }else {
+            return dfs(node.left,sum)+dfs(node.right,sum);
+        }
+
+
     }
 }

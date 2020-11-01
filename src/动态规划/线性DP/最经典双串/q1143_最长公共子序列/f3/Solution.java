@@ -1,4 +1,6 @@
-package 动态规划.线性DP.最经典双串.q1143_最长公共子序列.f1;
+package 动态规划.线性DP.最经典双串.q1143_最长公共子序列.f3;
+
+import java.util.Arrays;
 
 /**
  * @ClassName : Solution
@@ -42,29 +44,47 @@ public class Solution {
     /**
      * @return int
      * @Title longestCommonSubsequence
-     * @Description 动态规划
+     * @Description 自顶向下带备忘录的动态规划思路
      * @Author zph
      * @Date 2020/10/10 0:07
      * @Param [text1, text2]
      */
-    public int longestCommonSubsequence2nd(String text1, String text2) {
-        if (text1 == null || text2 == null ||
-                text1.length() == 0 || text2.length() == 0){
+    // 备忘录，消除重叠子问题
+    int[][] memo;
+
+    /* 主函数 */
+    int longestCommonSubsequence(String s1, String s2) {
+        int m = s1.length(), n = s2.length();
+        // 备忘录值为 -1 代表未曾计算
+        memo = new int[m][n];
+        for (int[] row : memo)
+            Arrays.fill(row, -1);
+        // 计算 s1[0..] 和 s2[0..] 的 lcs 长度
+        return dp(s1, 0, s2, 0);
+    }
+
+    // 定义：计算 s1[i..] 和 s2[j..] 的最长公共子序列长度
+    int dp(String s1, int i, String s2, int j) {
+        // base case
+        if (i == s1.length() || j == s2.length()) {
             return 0;
         }
-        int m = text1.length(), n = text2.length();
-        int[][] dp = new int[m + 1][n + 1];
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (text1.charAt(i - 1) == text2.charAt(j - 1)){
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-                }
-                else{
-                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
-                }
-            }
+        // 如果之前计算过，则直接返回备忘录中的答案
+        if (memo[i][j] != -1) {
+            return memo[i][j];
         }
-        return dp[m][n];
+        // 根据 s1[i] 和 s2[j] 的情况做选择
+        if (s1.charAt(i) == s2.charAt(j)) {
+            // s1[i] 和 s2[j] 必然在 lcs 中
+            memo[i][j] = 1 + dp(s1, i + 1, s2, j + 1);
+        } else {
+            // s1[i] 和 s2[j] 至少有一个不在 lcs 中
+            memo[i][j] = Math.max(
+                    dp(s1, i + 1, s2, j),
+                    dp(s1, i, s2, j + 1)
+            );
+        }
+        return memo[i][j];
     }
 
 }

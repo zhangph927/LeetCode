@@ -1,4 +1,4 @@
-package 树.二叉树.q226_翻转二叉树;
+package 树.二叉树.q226_翻转二叉树.f2;
 
 import 树.二叉树.TreeNode;
 
@@ -34,20 +34,28 @@ import 树.二叉树.TreeNode;
 public class Solution {
     /**
      * @Title invertTree
-     * @Description 递归
+     * @Description 前序遍历 递归
      * @Author zph
      * @Date 2020/9/18 0:14
      * @Param [root]
      * @return 树.二叉树.TreeNode
      */
     public TreeNode invertTree(TreeNode root) {
-        if(root==null){
+        // base case
+        if (root == null) {
             return null;
         }
-        TreeNode left=invertTree(root.left);
-        TreeNode right=invertTree(root.right);
-        root.left=right;
-        root.right=left;
+
+        /**** 前序遍历位置 ****/
+        // root 节点需要交换它的左右子节点
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        // 让左右子节点继续翻转它们的子节点
+        invertTree(root.left);
+        invertTree(root.right);
+
         return root;
 
     }

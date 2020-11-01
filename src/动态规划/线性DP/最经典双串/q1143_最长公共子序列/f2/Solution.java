@@ -58,8 +58,6 @@ public class Solution {
         int[] dp = new int[length2 + 1];
         //标识dp[i-1][j]
         int temp = 0;
-
-
         for (int i = 1; i <= length1; i++) {
             //标识dp[i-1][j-1]
             int last = 0;
