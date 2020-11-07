@@ -54,23 +54,32 @@ public class Solution {
      * @return java.util.List<java.lang.String>
      */
     public List<String> wordBreak(String s, List<String> wordDict) {
-        return word_Break(s, wordDict, 0);
-    }
-    HashMap<Integer, List<String>> map = new HashMap<>();
+        Set<String> wordDictSet = new HashSet<>(wordDict);
+        List<List<String>> lists = word_Break(s, wordDictSet, 0);
+        List<String> rest = new ArrayList<>();
+        for(List<String> list:lists){
+            rest.add(String.join(" ",list));
+        }
+        return rest;
 
-    public List<String> word_Break(String s, List<String> wordDict, int start) {
+    }
+    HashMap<Integer, List<List<String>>> map = new HashMap<>();
+
+    public List<List<String>> word_Break(String s, Set<String> wordDict, int start) {
         if (map.containsKey(start)) {
             return map.get(start);
         }
-        LinkedList<String> res = new LinkedList<>();
+        List<List<String>> res = new LinkedList<>();
         if (start == s.length()) {
-            res.add("");
+            res.add(new ArrayList<>());
         }
         for (int end = start + 1; end <= s.length(); end++) {
             if (wordDict.contains(s.substring(start, end))) {
-                List<String> list = word_Break(s, wordDict, end);
-                for (String l : list) {
-                    res.add(s.substring(start, end) + (l.equals("") ? "" : " ") + l);
+                List<List<String>> list = word_Break(s, wordDict, end);
+                for (List<String> l : list) {
+                    LinkedList<String> copyList = new LinkedList<>(l);
+                    copyList.addFirst(s.substring(start, end));
+                    res.add(copyList);
                 }
             }
         }

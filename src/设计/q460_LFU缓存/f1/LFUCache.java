@@ -1,5 +1,6 @@
 package 设计.q460_LFU缓存.f1;
 
+import java.lang.ref.Reference;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;

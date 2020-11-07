@@ -1,4 +1,4 @@
-package 数组.两个数组的交集.q349_两个数组的交集;
+package 数组.两个数组的交集.q349_两个数组的交集.f1;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -30,13 +30,20 @@ import java.util.Set;
  * @Version : V1.0
  */
 public class Solution {
+    /**
+     * @Title intersection
+     * @Description 两个集合
+     * @Author zph
+     * @Date 2020/11/4 9:43
+     * @Param [nums1, nums2]
+     * @return int[]
+     */
     public int[] intersection(int[] nums1, int[] nums2) {
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
             return new int[]{};
         }
         Set<Integer> set1 = new HashSet<>();
         HashSet<Integer> set2 = new HashSet<>();
-        set2.retainAll(set1);
         for (int num : nums1) {
             set1.add(num);
         }

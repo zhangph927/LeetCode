@@ -1,4 +1,4 @@
-package 动态规划.单词拆分.q140_单词拆分II.f3;
+package 动态规划.单词拆分.q140_单词拆分II;
 
 import java.util.*;
 
@@ -47,31 +47,45 @@ import java.util.*;
 public class Solution {
     /**
      * @Title wordBreak
-     * @Description 动态规划
+     * @Description 记忆化回溯
      * @Author zph
-     * @Date 2020/10/12 0:27
+     * @Date 2020/10/12 0:25
      * @Param [s, wordDict]
      * @return java.util.List<java.lang.String>
      */
     public List<String> wordBreak(String s, List<String> wordDict) {
-        LinkedList<String>[] dp = new LinkedList[s.length() + 1];
-        LinkedList<String> initial = new LinkedList<>();
-        initial.add("");
-        dp[0] = initial;
-        for (int i = 1; i <= s.length(); i++) {
-            LinkedList<String> list = new LinkedList<>();
-            for (int j = 0; j < i; j++) {
-                if (dp[j].size() > 0 && wordDict.contains(s.substring(j, i))) {
-                    for (String l : dp[j]) {
-                        list.add(l + (l.equals("") ? "" : " ") + s.substring(j, i));
-                    }
+        Set<String> wordDictSet = new HashSet<>(wordDict);
+        List<List<String>> lists = word_Break(s, wordDictSet, 0);
+        List<String> rest = new ArrayList<>();
+        for(List<String> list:lists){
+            rest.add(String.join(" ",list));
+        }
+        return rest;
+
+    }
+    HashMap<Integer, List<List<String>>> map = new HashMap<>();
+
+    public List<List<String>> word_Break(String s, Set<String> wordDict, int start) {
+        if (map.containsKey(start)) {
+            return map.get(start);
+        }
+        List<List<String>> res = new LinkedList<>();
+        if (start == s.length()) {
+            res.add(new ArrayList<>());
+        }
+        for (int end = start + 1; end <= s.length(); end++) {
+            if (wordDict.contains(s.substring(start, end))) {
+                List<List<String>> list = word_Break(s, wordDict, end);
+                for (List<String> l : list) {
+                    LinkedList<String> copyList = new LinkedList<>(l);
+                    copyList.addFirst(s.substring(start, end));
+                    res.add(copyList);
                 }
             }
-            dp[i] = list;
         }
-        return dp[s.length()];
+        map.put(start, res);
+        return res;
     }
-
 
 
     public static void main(String[] args) {
