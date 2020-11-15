@@ -71,4 +71,17 @@ public class Solution {
         return ans;
     }
 
+
+    public static void main(String[] args) {
+
+
+        Solution solution = new Solution();
+
+       int[][] intervals = {{1,2},{3,5},{6,7},{8,10},{12,16}};
+       int[] newInterval = {4,8};
+
+        int[][] insert = solution.insert(intervals, newInterval);
+        System.out.println(insert.toString());
+    }
+
 }

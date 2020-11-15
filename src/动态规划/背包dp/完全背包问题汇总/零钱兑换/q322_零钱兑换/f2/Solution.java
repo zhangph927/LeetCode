@@ -1,4 +1,4 @@
-package 动态规划.背包dp.完全背包问题汇总.零钱兑换.q322_零钱兑换;
+package 动态规划.背包dp.完全背包问题汇总.零钱兑换.q322_零钱兑换.f2;
 
 import java.util.Arrays;
 
@@ -46,33 +46,38 @@ import java.util.Arrays;
 public class Solution {
     /**
      * @Title coinChange
-     * @Description 动态规划
+     * @Description 动态规划-自上而下
      * @Author zph
      * @Date 2020/10/17 14:50
      * @Param [coins, amount]
      * @return int
      */
     public int coinChange(int[] coins, int amount) {
-        if(coins==null||coins.length==0){
+        if (amount < 1) {
+            return 0;
+        }
+        return coinChange(coins, amount, new int[amount]);
+    }
+
+    private int coinChange(int[] coins, int rem, int[] count) {
+        if (rem < 0) {
             return -1;
         }
-
-        int length=coins.length;
-        int[] dp=new int[amount+1];
-        Arrays.fill(dp,amount+1);
-        dp[0]=0;
-        for(int i=1;i<=amount;i++){
-
-            for(int coin:coins){
-                if(i-coin>=0&&dp[i-coin]!=amount+1){
-                    dp[i]=Math.min(dp[i],dp[i-coin]+1);
-                }
+        if (rem == 0) {
+            return 0;
+        }
+        if (count[rem - 1] != 0) {
+            return count[rem - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = coinChange(coins, rem - coin, count);
+            if (res >= 0 && res < min) {
+                min = 1 + res;
             }
         }
-        if(dp[amount]==amount+1){
-            return -1;
-        }
-        return dp[amount];
-
+        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[rem - 1];
     }
+
 }

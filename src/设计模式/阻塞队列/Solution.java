@@ -15,6 +15,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Solution {
 
     public static void main(String[] args) {
+        BlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<>(10);
 
         BlockingQueue<Integer> queue = new LinkedBlockingQueue();
 
