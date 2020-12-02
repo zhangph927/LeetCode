@@ -1,7 +1,5 @@
 package 数组.q581_最短无序连续子数组.f1;
 
-import 王争算法课程代码.q05_array.Array;
-
 import java.util.Arrays;
 
 /**

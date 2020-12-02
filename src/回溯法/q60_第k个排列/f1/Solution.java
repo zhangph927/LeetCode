@@ -1,7 +1,5 @@
 package 回溯法.q60_第k个排列.f1;
 
-import 王争算法课程代码.q05_array.Array;
-
 import java.util.Arrays;
 
 /**

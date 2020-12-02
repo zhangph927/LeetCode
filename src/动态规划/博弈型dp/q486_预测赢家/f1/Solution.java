@@ -1,8 +1,5 @@
 package 动态规划.博弈型dp.q486_预测赢家.f1;
 
-import 王争算法课程代码.q05_array.Array;
-
-import java.lang.ref.PhantomReference;
 import java.util.Arrays;
 
 /**

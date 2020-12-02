@@ -1,7 +1,5 @@
 package 回溯法.子集.q78_子集.f1;
 
-import 王争算法课程代码.q09_queue.ArrayQueue;
-
 import java.util.ArrayList;
 import java.util.List;
 

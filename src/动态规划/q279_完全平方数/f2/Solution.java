@@ -1,10 +1,6 @@
 package 动态规划.q279_完全平方数.f2;
 
-import 王争算法课程代码.q05_array.Array;
-
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @ClassName : Solution
